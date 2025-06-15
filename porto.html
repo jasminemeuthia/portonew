@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9ff;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #1a73e8;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #1a73e8;
+            text-align: center;
+        }
+        
+        /* Top Navigation Bar */
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .top-nav-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a73e8;
+            letter-spacing: 1px;
+        }
+        
+        /* Profile Section */
+        .profile {
+            text-align: center;
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            padding-top: 60px; /* Added to account for fixed nav */
+        }
+        
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #1a73e8;
+            margin: 0 auto 30px;
+            display: block;
+            box-shadow: 0 10px 30px rgba(26, 115, 232, 0.3);
+        }
+        
+        .profile h1 {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        .profile p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Skills Section */
+        .skills {
+            background-color: #fff;
+        }
+        
+        .skills-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .skill-category {
+            flex: 1;
+            min-width: 300px;
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-10px);
+        }
+        
+        .skill-category h3 {
+            color: #1a73e8;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+        
+        .skill-item {
+            margin-bottom: 15px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            background-color: #e3f2fd;
+        }
+        
+        /* Social Media Section */
+        .social {
+            background: linear-gradient(135deg, #bbdefb, #e3f2fd);
+            text-align: center;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .social-icon {
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #1a73e8;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: #fff;
+            text-align: center;
+        }
+        
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-item {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .contact-item i {
+            color: #1a73e8;
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #1a73e8;
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-item {
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .nav-item i {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .nav-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Modal for Skill Details */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .skills-container {
+                flex-direction: column;
+            }
+            
+            .skill-category {
+                min-width: 100%;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .social-icons {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <div class="top-nav-title">ABOUT ME</div>
+    </nav>
+    
+    <!-- Profile Section -->
+    <section id="profile" class="profile">
+        <div class="container">
+            <img src="images/profile.jpg" alt="Profile Picture" class="profile-pic">
+            <h1>Rr. Jasmine Meuthia</h1>
+            <p>Saya adalah murid Program Keahlian Pengembangan Perangkat Lunak dan Gim (PPLG) di SMK Wikrama Bogor. Saya memiliki kemampuan komunikasi dan keterampilan sosial yang baik, aktif dalam organisasi, disiplin, dan tekun. Berpengalaman bekerja dalam tim, termasuk menjabat sebagai ketua tim. Saya juga terlibat dalam beberapa organisasi, yaitu anggota di dalam OSIS Wikrama, Forum OSIS Jawa Barat, dan Forum Komunkasi OSIS Bogor.</p>
+    
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2>My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <div class="skill-item" onclick="showModal('English', 'Saya menyukai bahasa Inggris, dan lumayan fasih dalam penyampaian. namun bahasa Iggris saya masih belum sempurna dan masih saya pelajari sampai saat ini.')">
+                        English
+                    </div>
+                    <div class="skill-item" onclick="showModal('Indonesian', 'Bahsa Indonesia tentunya dalah bahasa ibu saya dan saya sangat fasih dalam berkomunikasi.')">
+                        Indonesian
+                    </div>
+                    <div class="skill-item" onclick="showModal('Arabic', 'Mempelajari bahasa Arab untuk 2 tahun di masa SMP saya, saya bisa berkomnikasi ringan dengan baik menggunakan bahasa Arab.')">
+                        Arabic
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Coding</h3>
+                    <div class="skill-item" onclick="showModal('HTML/CSS', 'Saya menggunakan HTML/CSS untuk project biasa, contohnya portofolio ini.')">
+                        HTML/CSS
+                    </div>
+                    <div class="skill-item" onclick="showModal('JavaScript', 'Saya mempelajari JavaScript di awal kelas 10. tidak terlalu mendalami, tapi kurang lebih bisa menggunakannya.')">
+                        JavaScript
+                    </div>
+                    <div class="skill-item" onclick="showModal('Flutter', 'Saya mengikuti ekstrakulikuler Flutter dan kurang lebih bisa mengerjakan project ringan dengan Flutter.')">
+                        Flutter
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Organization</h3>
+                    <div class="skill-item" onclick="showModal('Leadership', 'Saya memiliki pengalaman dalam memimpin tim dan proyek, mengikuti beberapa organisasi contohnya OSIS Wikrama, FOJB dan FKOB.')">
+                        Leadership
+                    </div>
+                    <div class="skill-item" onclick="showModal('Teamwork', 'Saya memiliki pengalaman dalam bekerja sama dengan tim, berkontribusi dalam proyek kelompok, dan mendukung rekan-rekan.')">
+                        Teamwork
+                    </div>
+                    <div class="skill-item" onclick="showModal('Communication', 'Saya memiliki kemampuan komunikasi yang baik, mampu menyampaikan ide dan mendengarkan pendapat orang lain.')">
+                        Communication
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Social Media Section -->
+    <section id="social" class="social">
+    <div class="container">
+        <h2>Connect With Me</h2>
+        <p>Find me on these platforms to see more of my work and interests!</p>
+        <div class="social-icons">
+            <div class="social-icon" onclick="window.open('https://www.instagram.com/jsmne.jje/', '_blank')">
+                <i class="fab fa-instagram"></i>
+            </div>
+            <div class="social-icon" onclick="window.open('https://open.spotify.com/user/yfuilrof7bq2x2nuw3jfxr47e?si=0bf99587aa904343', '_blank')">
+                <i class="fab fa-spotify"></i>
+            </div>
+            <div class="social-icon" onclick="window.open('https://github.com/jasminemeuthia', '_blank')">
+                <i class="fab fa-github"></i>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    rrjmeuthia15@gmial.com
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    +62 821-1236-6678
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Bogor, Indonesia
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <div class="nav-item" onclick="scrollToSection('profile')">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </div>
+        <div class="nav-item" onclick="scrollToSection('skills')">
+            <i class="fas fa-code"></i>
+            <span>Skills</span>
+        </div>
+        <div class="nav-item" onclick="scrollToSection('social')">
+            <i class="fas fa-share-alt"></i>
+            <span>Social</span>
+        </div>
+        <div class="nav-item" onclick="scrollToSection('contact')">
+            <i class="fas fa-envelope"></i>
+            <span>Contact</span>
+        </div>
+    </div>
+    
+    <!-- Modal for Skill Details -->
+    <div id="skillModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3 id="modal-title">Skill Title</h3>
+            <p id="modal-description">Skill description will appear here.</p>
+        </div>
+    </div>
+    
+    <script>
+        // Smooth scrolling to sections
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+        
+        // Modal functions
+        function showModal(title, description) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-description').textContent = description;
+            document.getElementById('skillModal').style.display = 'flex';
+        }
+        
+        function closeModal() {
+            document.getElementById('skillModal').style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('skillModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
